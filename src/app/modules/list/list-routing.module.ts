@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PokemonsComponent } from './components/pokemons/pokemons.component';
+import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 
 const routes: Routes = [
   {
@@ -8,7 +8,7 @@ const routes: Routes = [
     children: [
       {
         path: 'pokemons-list',
-        component: PokemonsComponent,
+        component: CatalogueComponent,
       },
       {
         path: '**',
