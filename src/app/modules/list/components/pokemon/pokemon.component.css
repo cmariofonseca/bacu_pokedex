@@ -1,5 +1,16 @@
 .col-md-4 {
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 33.33333333%;
+}
+
+.g-0 {
+  display: flex;
+  justify-content: center;
+}
+
+.my_wrap {
+  display: flex;
+  flex-wrap: wrap;
 }

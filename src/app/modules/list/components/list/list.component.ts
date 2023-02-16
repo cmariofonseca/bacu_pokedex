@@ -7,21 +7,56 @@ import { ListService } from '../../services/list.service';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
+  scrollPosition!: number;
   pokemons!: Array<any>;
-  pokemonDetail: any;
+  nextRequest!: string;
+  gettingData: boolean = false;
 
   constructor(private listService: ListService) {}
 
   ngOnInit(): void {
-    this.listService.getPokemonsList().subscribe((value) => {
-      // console.log(value);
-      this.pokemons = value.results;
-      // console.log(this.pokemons);
-      this.pokemons.forEach((pokemon) => {
-        this.listService.getPokemon(pokemon.name).subscribe((pokemonDetail) => {
-          console.log(pokemonDetail);
-        });
-      });
+    this.pokemons = [];
+    this.getScrollPositionInPercentage();
+    this.fillPokemonsList();
+  }
+
+  getScrollPositionInPercentage() {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.offsetHeight;
+      const winHeight = window.innerHeight;
+      const scrollPercent = scrollTop / (docHeight - winHeight);
+      const scrollPercentRounded = Math.round(scrollPercent * 100);
+      this.scrollPosition = scrollPercentRounded;
+      if (this.scrollPosition > 80) {
+        this.fillPokemonsList();
+      }
     });
+  }
+
+  fillPokemonsList() {
+    if (!this.gettingData) {
+      this.listService.getPokemonsList(this.nextRequest).subscribe({
+        next: (pokemonsList) => {
+          this.gettingData = true;
+          this.nextRequest = pokemonsList.next;
+          pokemonsList.results.forEach((pokemon, index) => {
+            this.listService.getPokemon(pokemon.name).subscribe({
+              next: (pokemonDetail) => {
+                this.pokemons.push(pokemonDetail);
+              },
+              complete: () => {
+                if (index === 19) {
+                  console.log(this.pokemons);
+                }
+              },
+            });
+          });
+        },
+        complete: () => {
+          this.gettingData = false;
+        },
+      });
+    }
   }
 }
