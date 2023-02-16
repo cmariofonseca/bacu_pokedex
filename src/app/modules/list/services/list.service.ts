@@ -7,15 +7,20 @@ import { PokemonsList } from '../interfaces/pokemons-list';
   providedIn: 'root',
 })
 export class ListService {
-  private pathBase = 'https://pokeapi.co/api/v2/pokemon/';
+  private pathBase = 'https://pokeapi.co/api/v2';
 
   constructor(private http: HttpClient) {}
 
-  getPokemonsList(): Observable<PokemonsList> {
-    return this.http.get<PokemonsList>(this.pathBase);
+  getPokemonsList(nextRequest: string): Observable<PokemonsList> {
+    const url = nextRequest || `${this.pathBase}/pokemon`;
+    return this.http.get<PokemonsList>(url);
   }
 
   getPokemon(name: string) {
-    return this.http.get(`${this.pathBase}${name}`);
+    return this.http.get(`${this.pathBase}/pokemon/${name}`);
+  }
+
+  getAbility(id: number) {
+    return this.http.get(`${this.pathBase}/ability/${id}`);
   }
 }
