@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PokemonsComponent } from './components/pokemons/pokemons.component';
+import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'pokemons-list',
-        component: PokemonsComponent,
+        path: 'pokemons',
+        component: CatalogueComponent,
       },
       {
         path: '**',
-        redirectTo: 'pokemons-list',
+        redirectTo: 'pokemons',
       },
     ],
   },

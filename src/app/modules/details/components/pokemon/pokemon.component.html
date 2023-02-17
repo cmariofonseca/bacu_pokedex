@@ -1,0 +1,67 @@
+<ng-container *ngIf="pokemon; else loading">
+  <div class="pokemon_card">
+    <div class="image_width">
+      <img [src]="pokemon.image" [alt]="pokemon.name" />
+    </div>
+    <div class="details_width">
+      <div
+        class="d-flex justify-content-between mb-2"
+        style="font-family: cursive"
+      >
+        <h1 class="card-title">{{ pokemon.name | titlecase }}</h1>
+        <h2 class="card-title"># {{ pokemon.id }}</h2>
+      </div>
+
+      <div class="p-2">
+        <span class="badge text-bg-info w-100"> Abilities: </span>
+        <div
+          *ngFor="let ability of pokemon.abilities; let i = index"
+          class="d-flex"
+        >
+          <h6 class="card-text ms-3">{{ ability.name }}:</h6>
+          <p class="ms-2">{{ ability.description }}</p>
+        </div>
+      </div>
+
+      <div class="d-flex ms-3 mt-3">
+        <span class="badge text-bg-warning"> Types: </span>
+        <div *ngFor="let type of pokemon.types">
+          <h6 class="card-text ms-3">{{ type.type.name }}</h6>
+        </div>
+      </div>
+
+      <div class="d-flex ms-3 mt-3">
+        <span class="badge text-bg-warning"> Height: </span>
+        <h6 class="card-text ms-3">{{ pokemon.height }}0 cm</h6>
+      </div>
+
+      <div class="d-flex ms-3 mt-3">
+        <span class="badge text-bg-warning"> Weight: </span>
+        <h6 class="card-text ms-3">{{ pokemon.weight }}0 gr</h6>
+      </div>
+
+      <div class="d-flex ms-3 mt-3">
+        <div *ngFor="let stats of pokemon.stats; let i = index" class="d-flex">
+          <span *ngIf="i < 3" class="badge text-bg-success">
+            {{ stats.stat.name | titlecase }}:
+          </span>
+          <h6 *ngIf="i < 3" class="card-text ms-2 me-3">
+            {{ stats.base_stat }}
+          </h6>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 d-flex justify-content-between mt-5">
+      <button (click)="toList()" type="button" class="btn btn-primary btn-lg">
+        Volver al listado
+      </button>
+      <button type="button" class="btn btn-success btn-lg">Comprar</button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="w-100 d-flex justify-content-center">
+    <img src="assets/images/pikachu.jpg" alt="" />
+  </div>
+</ng-template>
