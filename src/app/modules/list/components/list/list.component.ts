@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
       const scrollPercent = scrollTop / (docHeight - winHeight);
       const scrollPercentRounded = Math.round(scrollPercent * 100);
       this.scrollPosition = scrollPercentRounded;
-      if (this.scrollPosition > 80) {
+      if (this.scrollPosition > 90) {
         this.fillPokemonsList();
       }
     });

@@ -52,10 +52,17 @@
       </div>
     </div>
     <div class="w-100 d-flex justify-content-between mt-5">
-      <button (click)="toList()" type="button" class="btn btn-primary btn-lg">
+      <button (click)="toList()" type="button" class="btn btn-secondary btn-lg">
         Volver al listado
       </button>
-      <button type="button" class="btn btn-success btn-lg">Comprar</button>
+      <button
+        (click)="pokemonsListToBuy()"
+        type="button"
+        [disabled]="!available"
+        class="btn btn-primary btn-lg"
+      >
+        Comprar
+      </button>
     </div>
   </div>
 </ng-container>
@@ -63,5 +70,8 @@
 <ng-template #loading>
   <div class="w-100 d-flex justify-content-center">
     <img src="assets/images/pikachu.jpg" alt="" />
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    <h2>No hay pokemones para mostrar :(</h2>
   </div>
 </ng-template>
