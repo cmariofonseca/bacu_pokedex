@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
   toPokemonDetail() {
     if (this.form.get('name')?.value) {
       this.storeService.setPokemonName(this.pokemonName);
-      this.router.navigate(['/detail']);
+      this.router.navigate(['/details']);
     }
   }
 }

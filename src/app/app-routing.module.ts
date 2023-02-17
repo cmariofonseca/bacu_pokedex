@@ -8,10 +8,17 @@ const routes: Routes = [
       import('src/app/modules/list/list.module').then((m) => m.ListModule),
   },
   {
-    path: 'detail',
+    path: 'details',
     loadChildren: () =>
       import('src/app/modules/details/details.module').then(
         (m) => m.DetailsModule
+      ),
+  },
+  {
+    path: 'shopping-cart',
+    loadChildren: () =>
+      import('src/app/modules/shopping-cart/shopping-cart.module').then(
+        (m) => m.ShoppingCartModule
       ),
   },
   {

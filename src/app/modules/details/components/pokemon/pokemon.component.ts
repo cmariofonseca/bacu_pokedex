@@ -11,6 +11,7 @@ import { DetailsService } from '../../services/details.service';
 export class PokemonComponent implements OnInit {
   pokemonName!: string;
   pokemon!: any;
+  available: boolean = true;
 
   constructor(
     private router: Router,
@@ -31,10 +32,8 @@ export class PokemonComponent implements OnInit {
 
   getPokemonDetails() {
     if (this.pokemonName) {
-      console.log('if()');
       this.detailsService.getPokemon(this.pokemonName).subscribe({
         next: (pokemon: any) => {
-          console.log('***  1  ***');
           const { height, id, name, stats, types, weight } = pokemon;
           this.pokemon = {
             abilities: [],
@@ -51,11 +50,9 @@ export class PokemonComponent implements OnInit {
           });
         },
         error: () => {
-          console.log('***  2  ***');
           this.router.navigate(['/list']);
         },
         complete: () => {
-          console.log('***  3  ***');
           this.storeService.setPokemonName('');
         },
       });
@@ -78,5 +75,10 @@ export class PokemonComponent implements OnInit {
 
   toList() {
     this.router.navigate(['/list']);
+  }
+
+  pokemonsListToBuy() {
+    this.available = false;
+    this.storeService.setPokemonsListToBuy(this.pokemon.name);
   }
 }
