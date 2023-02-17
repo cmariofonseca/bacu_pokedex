@@ -45,11 +45,7 @@ export class ListComponent implements OnInit {
               next: (pokemonDetail) => {
                 this.pokemons.push(pokemonDetail);
               },
-              complete: () => {
-                if (index === 19) {
-                  console.log(this.pokemons);
-                }
-              },
+              complete: () => {},
             });
           });
         },

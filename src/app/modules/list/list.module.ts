@@ -7,9 +7,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { ListComponent } from './components/list/list.component';
+import { WhateverComponent } from './pages/whatever/whatever.component';
 
 @NgModule({
-  declarations: [CatalogueComponent, ListComponent, PokemonComponent],
+  declarations: [CatalogueComponent, ListComponent, PokemonComponent, WhateverComponent],
   imports: [CommonModule, ListRoutingModule, SharedModule],
 })
 export class ListModule {}

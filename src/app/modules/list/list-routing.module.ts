@@ -7,12 +7,12 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'pokemons-list',
+        path: 'pokemons',
         component: CatalogueComponent,
       },
       {
         path: '**',
-        redirectTo: 'pokemons-list',
+        redirectTo: 'pokemons',
       },
     ],
   },
