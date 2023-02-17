@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { StoreService } from '../../services/store.service';
 
 @Component({
@@ -9,9 +10,11 @@ import { StoreService } from '../../services/store.service';
 })
 export class NavbarComponent implements OnInit {
   form!: FormGroup;
+  pokemonName!: string;
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private storeService: StoreService
   ) {
     this.createForm();
@@ -23,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
   setValueChanges() {
     this.form.valueChanges.subscribe((value) => {
-      this.storeService.setNamePokemon(value);
+      this.pokemonName = value.name;
     });
   }
 
@@ -31,5 +34,12 @@ export class NavbarComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: [''],
     });
+  }
+
+  toPokemonDetail() {
+    if (this.form.get('name')?.value) {
+      this.storeService.setPokemonName(this.pokemonName);
+      this.router.navigate(['/detail']);
+    }
   }
 }

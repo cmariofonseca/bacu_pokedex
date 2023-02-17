@@ -1,8 +1,8 @@
-<div class="card me-3 mt-4 ms-3" style="max-width: 450px; cursor: pointer">
+<div class="card me-3 mt-4 ms-3 zoom" style="max-width: 450px; cursor: pointer">
   <div class="row g-0">
     <div class="col-md-4">
       <img
-        [src]="pokemon['sprites']['other']['official-artwork']['front_default']"
+        [src]="pokemon.sprites.other['official-artwork'].front_default"
         class="img-fluid rounded-start"
         [alt]="pokemon.name"
       />
@@ -43,7 +43,7 @@
             class="d-flex"
           >
             <span *ngIf="i < 3" class="badge text-bg-success">
-              {{ stats.stat.name }}:
+              {{ stats.stat.name | titlecase }}:
             </span>
             <h6 *ngIf="i < 3" class="card-text ms-2 me-3">
               {{ stats.base_stat }}

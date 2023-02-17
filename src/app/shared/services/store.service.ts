@@ -5,11 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class StoreService {
-  namePokemon = new BehaviorSubject<string>('');
+  pokemonName = new BehaviorSubject<string>('');
 
   constructor() {}
 
-  setNamePokemon(name: string) {
-    this.namePokemon.next(name);
+  setPokemonName(name: string) {
+    this.pokemonName.next(name);
   }
 }

@@ -1,0 +1,26 @@
+.pokemon_card {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2%;
+}
+
+.image_width {
+  width: 50%;
+}
+
+.details_width {
+  width: 50%;
+}
+
+@media only screen and (max-width: 1100px) {
+  .image_width {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .details_width {
+    width: 100%;
+  }
+}
